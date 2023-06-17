@@ -41,28 +41,29 @@
             <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($mahasiswas as $mahasiswa)
+        @foreach ($paginate as $mahasiswa)
             <tr>
                 <td>{{ $mahasiswa->nim }}</td>
                 <td>{{ $mahasiswa->nama }}</td>
-                <td>{{ $mahasiswa->kelas }}</td>
+                <td>{{ $mahasiswa->kelas->nama_kelas }}</td>
                 <td>{{ $mahasiswa->jurusan }}</td>
                 <td>{{ $mahasiswa->no_hp }}</td>
                 <td>{{ $mahasiswa->email }}</td>
                 <td>{{ Carbon::parse($mahasiswa->tgl_lahir)->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</td>
-                <td>
+                <td class="col-lg-4">
                     <form action="{{ route('mahasiswas.destroy', $mahasiswa->nim) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('mahasiswas.show', $mahasiswa->nim) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('mahasiswas.edit', $mahasiswa->nim) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        {{-- <a class="btn btn-warning" href="{{ route('mahasiwa_matkul.nilai', $mahasiswa->nim) }}">Nilai</a> --}}
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
     <div class="d-flex justify-content-center">
-        {{ $mahasiswas->links() }}
+        {{ $paginate->links() }}
     </div>
 @endsection
