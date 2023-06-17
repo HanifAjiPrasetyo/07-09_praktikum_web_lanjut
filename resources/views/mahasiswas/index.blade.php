@@ -50,13 +50,14 @@
                 <td>{{ $mahasiswa->no_hp }}</td>
                 <td>{{ $mahasiswa->email }}</td>
                 <td>{{ Carbon::parse($mahasiswa->tgl_lahir)->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</td>
-                <td>
+                <td class="col-lg-4">
                     <form action="{{ route('mahasiswas.destroy', $mahasiswa->nim) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('mahasiswas.show', $mahasiswa->nim) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('mahasiswas.edit', $mahasiswa->nim) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        {{-- <a class="btn btn-warning" href="{{ route('mahasiwa_matkul.nilai', $mahasiswa->nim) }}">Nilai</a> --}}
                     </form>
                 </td>
             </tr>
