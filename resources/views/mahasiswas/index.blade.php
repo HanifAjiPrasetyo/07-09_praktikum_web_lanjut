@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('mahasiswas.layout')
 @section('content')
     <div class="row">
@@ -22,6 +25,8 @@
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>No_Handphone</th>
+            <th>Email</th>
+            <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($mahasiswas as $mahasiswa)
@@ -31,6 +36,8 @@
                 <td>{{ $mahasiswa->kelas }}</td>
                 <td>{{ $mahasiswa->jurusan }}</td>
                 <td>{{ $mahasiswa->no_hp }}</td>
+                <td>{{ $mahasiswa->email }}</td>
+                <td>{{ Carbon::parse($mahasiswa->tgl_lahir)->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</td>
                 <td>
                     <form action="{{ route('mahasiswas.destroy', $mahasiswa->nim) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('mahasiswas.show', $mahasiswa->nim) }}">Show</a>
@@ -43,4 +50,7 @@
             </tr>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center">
+        {{ $mahasiswas->links() }}
+    </div>
 @endsection

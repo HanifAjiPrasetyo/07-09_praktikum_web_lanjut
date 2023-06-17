@@ -43,6 +43,16 @@
                             <input type="No_Handphone" name="no_hp" class="form-control" id="No_Handphone"
                                 value="{{ $mahasiswa->no_hp }}" aria-describedby="No_Handphone">
                         </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email"
+                                value="{{ $mahasiswa->email }}" aria-describedby="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="tgl_lahir">Tanggal Lahir</label>
+                            <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir"
+                                value="{{ $mahasiswa->tgl_lahir }}" aria-describedby="tgl_lahir">
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

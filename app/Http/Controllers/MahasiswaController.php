@@ -12,9 +12,12 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswas = Mahasiswa::all();
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-        return view('mahasiswas.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
+        // $mahasiswas = Mahasiswa::all();
+        // $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
+
+        $mahasiswas = Mahasiswa::latest()->paginate(5);
+
+        return view('mahasiswas.index', compact('mahasiswas'));
     }
 
     /**
@@ -31,7 +34,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         //melakukan validasi data
-        $request->validate(['nim' => 'required', 'nama' => 'required', 'kelas' => 'required', 'jurusan' => 'required', 'no_hp' => 'required',]);
+        $request->validate(['nim' => 'required', 'nama' => 'required', 'kelas' => 'required', 'jurusan' => 'required', 'no_hp' => 'required', 'email' => 'required|email', 'tgl_lahir' => 'required']);
 
         //fungsi eloquent untuk menambah data
         Mahasiswa::create($request->all());
@@ -66,7 +69,7 @@ class MahasiswaController extends Controller
     public function update(Request $request, $nim)
     {
         //melakukan validasi data
-        $request->validate(['nim' => 'required', 'nama' => 'required', 'kelas' => 'required', 'jurusan' => 'required', 'no_hp' => 'required',]);
+        $request->validate(['nim' => 'required', 'nama' => 'required', 'kelas' => 'required', 'jurusan' => 'required', 'no_hp' => 'required', 'email' => 'required|email|unique:mahasiswas', 'tgl_lahir' => 'required']);
 
         //fungsi eloquent untuk mengupdate data inputan kita
         Mahasiswa::find($nim)->update($request->all());

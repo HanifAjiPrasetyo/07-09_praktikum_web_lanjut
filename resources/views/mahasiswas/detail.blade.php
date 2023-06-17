@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('mahasiswas.layout')
 @section('content')
     <div class="container mt-5">
@@ -11,6 +14,10 @@
                         <li class="list-group-item"><b>Kelas: </b>{{ $mahasiswa->kelas }}</li>
                         <li class="list-group-item"><b>Jurusan: </b>{{ $mahasiswa->jurusan }}</li>
                         <li class="list-group-item"><b>No_Handphone: </b>{{ $mahasiswa->no_hp }}</li>
+                        <li class="list-group-item"><b>Email: </b>{{ $mahasiswa->email }}</li>
+                        <li class="list-group-item"><b>Tanggal Lahir:
+                            </b>{{ Carbon::parse($mahasiswa->tgl_lahir)->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}
+                        </li>
                     </ul>
                 </div> <a class="btn btn-success mt-3" href="{{ route('mahasiswas.index') }}">Kembali</a>
             </div>
