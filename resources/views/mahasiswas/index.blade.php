@@ -11,6 +11,18 @@
             <div class="float-right my-2">
                 <a class="btn btn-success" href="{{ route('mahasiswas.create') }}">Input Mahasiswa</a>
             </div>
+            <div class="float-left my-2">
+                <form action="/mahasiswas">
+                    <div class="form-group" role="search">
+                        <label for="search">Cari Mahasiswa</label>
+                        <div class="d-flex">
+                            <input type="search" name="search" class="form-control" id="search"
+                                aria-describedby="search" value="{{ request('search') }}" autofocus>
+                            <button type="submit" class="btn btn-sm btn-dark mx-1">Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     @if ($message = Session::get('success'))
